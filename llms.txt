@@ -1,0 +1,55 @@
+# Awesome MetaX
+
+> 沐曦（MetaX / MACA）曦云系列 GPU 的生态资源清单：官方软件栈、框架适配、算子库、
+> 开发调试工具、性能基准、迁移兼容与监控工具。面向在国产 GPU 上做训练、推理、
+> 算子开发与集群运维的工程师。条目均附公开仓库地址与一句话说明。
+
+关键词：沐曦, MetaX, MACA, MXMACA, 曦云, C500, C550, C588, 国产 GPU, CUDA 兼容层,
+异构计算, GPU 算力基准, GPU 烤机, mcBLAS, mccl, cu-bridge
+
+## 官方资源
+- [沐曦开发者社区](https://developer.metax-tech.com/): 官方门户，软件栈下载、算力在线、编程资源
+- [MetaX-MACA](https://github.com/MetaX-MACA): 官方开源组织，维护各框架的沐曦适配分支
+- [maca-samples](https://github.com/MetaX-MACA/maca-samples): MXMACA 基础 GPU 编程参考实现
+
+## 软件栈与框架适配
+- [mcPytorch](https://github.com/MetaX-MACA/mcPytorch): PyTorch 沐曦适配版
+- [vLLM-metax](https://github.com/MetaX-MACA/vLLM-metax): vLLM 的沐曦硬件后端插件
+- [mcTVM](https://github.com/MetaX-MACA/mcTVM): 基于 TVM 的深度学习编译器栈
+- [mcTriton](https://github.com/MetaX-MACA/mcTriton): Triton 沐曦后端
+- [flashattn](https://github.com/MetaX-MACA/flashattn): FlashAttention 沐曦适配
+- [mini-sglang-metax](https://github.com/sxvvv/mini-sglang-metax): Mini-SGLang 沐曦移植
+
+## 算子与通信库
+- [mcoplib](https://github.com/MetaX-MACA/mcoplib): 高性能算子库
+- [TileOPs-Metax](https://github.com/MetaX-MACA/TileOPs-Metax): 基于 TileLang 的 LLM 算子库
+- [mcTlass](https://github.com/MetaX-MACA/mcTlass): CUTLASS 沐曦适配
+- [mccl-nccl](https://github.com/MetaX-MACA/mccl-nccl): NCCL 沐曦实现，多卡集合通信
+- [muxi_native_layout_kernels](https://github.com/QingCheng-AI/muxi_native_layout_kernels): native layout 优化的 GeMV/窄 GEMM/fused MoE
+
+## 开发与调试
+- [univis](https://github.com/cookiesheep/univis): 逐层数值对照，定位移植后从哪层开始算错
+- [metax-kernelwiki](https://github.com/qhy991/metax-kernelwiki): C550 kernel 知识与 MACA 微基准
+- [metax-docs-mcp](https://github.com/AIIanZ/metax-docs-mcp): 官方文档的 MCP/CLI 接入
+
+## 性能基准与压测
+- [mx-burner](https://github.com/stlin256/mx-burner): 算力基准与烤机，FP64 至 INT8 及 2:4 稀疏，含尺寸自动探测与内存带宽测试，附 C550 实测
+- [CUDABurner](https://github.com/stlin256/CUDABurner): 同类工具的 NVIDIA CUDA 版本
+- [shoc-metax](https://github.com/LABELNET/shoc-metax): SHOC 基准套件，兼容 MACA 2.27.0.11
+
+## 迁移与兼容
+- [MXReady](https://github.com/shuljyli/MXReady): PyTorch CUDA 扩展的沐曦迁移准备度静态体检
+- [metax-model-preflight](https://github.com/xzh25/metax-model-preflight): 量化 checkpoint 的静态预检
+- [moark-metax-l1-certification](https://github.com/Asudual/moark-metax-l1-certification): 沐曦 L1 认证中文指南
+
+## 监控与可观测
+- [metax-mxtop](https://github.com/onlylrs/metax-mxtop): nvitop 风格的沐曦 GPU 终端监控
+
+## 上游已支持沐曦的项目
+- [TileLang](https://github.com/tile-ai/tilelang): kernel DSL，已含 MXMACA 后端
+- [FlagCX](https://github.com/flagos-ai/FlagCX): 跨芯片通信库
+
+## 平台数据（曦云 C550 单卡公开实测）
+FP16 277.9 TFLOPS / BF16 277.7 / TF32 129.1 / INT8 397.6 TOPS / FP32 36.3 / FP64 4.8；
+HBM 拷贝约 960 GB/s；显存 65536 MiB；功耗待机 93 W、满载 451 W。
+来源：https://github.com/stlin256/mx-burner/blob/main/docs/C550_RESULTS.md
